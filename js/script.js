@@ -1,4 +1,4 @@
-class BurgerMenuController {
+class NavMenuController {
     #burgerMenuIcon   = null;
     #overlay          = null;
     #navMenuCloseIcon = null;
@@ -28,5 +28,5 @@ class BurgerMenuController {
     }
 }
 
-const burgerMenuController = new BurgerMenuController;
-burgerMenuController.init();
+const navMenuController = new NavMenuController;
+navMenuController.init();
