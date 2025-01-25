@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+    padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    /* font-family: "Poppins", serif; */
+    font-family: "Open Sans", serif;
+}
+
+.introduction {
+    height: 100%;
+    height: 800px;
+    background-image: url('/images/introduction_background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+}
+
+.burger-menu{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 36px;
+    align-items: flex-end;
+    cursor: pointer;
+}
+
+.burger-menut__item {
+    height: 3px;
+    background-color: black;
+}
+
+.burger-menut__item:nth-child(odd) {
+    width: 30px;
+}
+
+.burger-menut__item:nth-child(even) {
+    width: 36px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: 1000; 
+    overflow: hidden;
+    height: 0;
+    width: 100%;
+}
+
+.overlay-active {
+    height: 100%;
+}
+
+.nav-menu {
+    background-color: #FFA501;
+    height: 100%;
+    width: 345px;
+    padding: 24px 25px 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-menu__close-icon-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 88px;
+    cursor: pointer;
+}
+
+.nav-menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    color: #FFFFFF;
+}
+
+.nav_menu-list__li {
+    position: relative;
+    padding-left: 35px;
+}
+
+.nav_menu-list__link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav_menu-list__li::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: calc(50% - 7.5px);
+    left: 0;
+    background-image: url('/images/nav_menu_list_icon.svg');
+    background-size: cover;
+    background-position: center;
+    height: 15px;
+    width: 15px;
+}
+
+.introduction__inner-block {
+    padding: 20px 30px 0 50px;
+    height: inherit;
+}
+
+.introduction__content {
+    position: relative;
+    height: inherit;
+}
+
+.container {
+    max-width: 1140px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.social-network {
+    position: absolute;
+    top: calc(50% - 169px);
+    left: 0;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.social-network__line {
+    height: 70px;
+    width: 2px;
+    background-color: black;
+    transform: inherit;
+}
+
+.social-network__icons-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+}
+
+.icon--rotated {
+    transform: rotate(90deg);
+}
+
+.icons-wrapper--center {
+    justify-content: center;
+}
+
+.performance-container {
+    margin-top: 205px;
+    max-width: 532px;
+    color: #000000;
+    font-weight: 700;
+}
+
+.perfomance__author-text {
+    font-size: 16px;
+    line-height: 24px;
+    position: relative;
+    z-index: 1;
+    padding-left: 10px;
+}
+
+.perfomance__author-text::before {
+    content: ''; 
+    position: absolute; 
+    top: 50%; 
+    left: 18px;
+    width: 36px; 
+    height: 36px; 
+    background-color: #FFA501; 
+    border-radius: 50%; 
+    z-index: -1; 
+    transform: translate(-50%, -50%);
+}
+
+.perfomance__title {
+    font-size: 48px;
+    line-height: 60px;
+    margin-bottom: 37px;
+}
+
+.button {
+    font-size: 14px;
+    line-height: 21px;
+    padding: 12px 26px;
+    cursor: pointer;
+    background: transparent;
+    transition: background-color .3s ease;
+    border: 2px solid black;
+}
+
+.button:hover {
+    background-color: #FFA501;
+}
+
+

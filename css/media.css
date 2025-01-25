@@ -1,0 +1,44 @@
+@media screen and (max-width: 1400px) {
+    .introduction__container {
+        padding-left: 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .introduction__container {
+        padding-left: 0px;
+    }
+
+    .social-network {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .introduction {
+        height: 640px;
+        background-size: auto 100%;
+        background-position: 59%;
+    }
+
+    .introduction__inner-block {
+        padding: 20px;
+    }
+
+    .perfomance__title {
+        font-size: 26px;
+        line-height: 39px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .nav-menu {
+        width: 250px;
+        padding: 25px 25px 50px 20px;
+    }
+
+    .nav-menu-list .nav_menu-list__li {
+        padding-left: 27px;
+    }
+}
+
