@@ -37,7 +37,7 @@ body {
 .introduction {
     height: 100%;
     height: 800px;
-    background-image: url('/images/introduction_background.jpg');
+    background-image: url('../images/introduction_background.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto 100%;
