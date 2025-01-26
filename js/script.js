@@ -89,6 +89,15 @@ class InputController {
     getServiceData(key) {
         return this.#service[key]
     }
+
+    clearInput() {
+        this.#service = {
+            isInputValValid: false,
+            isShowMessage:  false,
+            message:        '',
+            passedChecks:   [],
+        };
+    }
 }
 
 class InputControllerUI extends InputController {
@@ -110,6 +119,13 @@ class InputControllerUI extends InputController {
 
         inputTooltip.innerText = message;
     }
+
+    clearInput() {
+        super.clearInput();
+
+        const currentInput = this.getInput();
+        currentInput.value = '';
+    }
 }
 
 function debounce(func, delay) {
@@ -121,16 +137,21 @@ function debounce(func, delay) {
 }
 
 class ContactsFormController {
-    #nameInput    = null;
-    #mailInput    = null;
-    #messageInput = null;
+    #nameInputController    = null;
+    #mailInputController    = null;
+    #messageInputController = null;
+    #form                   = null;
+    #submitButton           = null;
     
     init() {
-        this.#nameInput = new InputControllerUI({
+        this.#form         = document.querySelector('.contacts__form');
+        this.#submitButton = document.querySelector('.contacts__button');
+
+        this.#nameInputController = new InputControllerUI({
             inputName: 'name', 
             inputRules: [
                 (val) => {
-                    return val.length >= 3 ||  'Текущее поле не может содержать менее 3 символов'
+                    return val.length >= 2 ||  'Текущее поле не может содержать менее 2 символов'
                 },
                 (val) => {
                     return val.length <= 50 || 'Текущее поле не может содержать более 50 символов'
@@ -141,18 +162,17 @@ class ContactsFormController {
             ]
         });  
         
-        this.#mailInput = new InputControllerUI({
+        this.#mailInputController = new InputControllerUI({
             inputName: 'mail',
             inputRules: [
                 (val) => {
                     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                    console.log(regex.test(val))
                     return regex.test(val) || 'Вы указали некорректную почту';
                 },
             ],
         });
 
-        this.#messageInput = new InputControllerUI({
+        this.#messageInputController = new InputControllerUI({
             inputName: 'message',
             inputRules: [
                 (val) => {
@@ -165,20 +185,153 @@ class ContactsFormController {
         });
 
         [
-            this.#nameInput,
-            this.#mailInput,
-            this.#messageInput,
+            this.#nameInputController,
+            this.#mailInputController,
+            this.#messageInputController,
         ].forEach(inputController => {
             const input = inputController.getInput();
 
             const debouncedInit = debounce(() => {
                 inputController.init();
+                this.controlSubmitButton();
             }, 700);
             
             input.addEventListener('input', debouncedInit);
         })
+
+        this.disableSubmit();
+
+        const debouncedSubmitHandler = debounce(() => {
+            this.submitFormHandler();
+        }, 700);
+
+        this.#submitButton.addEventListener('click', debouncedSubmitHandler.bind(this));
+    }
+
+    disableSubmit() {
+        this.#form.addEventListener('submit', (e) => {
+            e.preventDefault();
+        });
+    }
+
+    checkIsFormValid() {
+        return [this.#nameInputController, this.#mailInputController, this.#messageInputController]
+        .map(inputController =>inputController.getServiceData('isInputValValid'))
+        .every(isInputValid => isInputValid);
+    }
+
+    async submitFormHandler() {
+        const requestData = {
+            name:    this.#nameInputController.getInput().value.trim(),
+            mail:    this.#mailInputController.getInput().value.trim(),
+            message: this.#messageInputController.getInput().value.trim(),
+        }
+        //Так бы выглядел запрос
+        // const url = 'https://jsonplaceholder.typicode.com/posts';
+        try {
+            // const response = await fetch(url, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(requestData)
+            // });
+
+            //создал эмуляция объекта ответа от сервера
+            const response = {
+                status: 200,
+                message: "OK",
+                data: {
+                    message: "Мы получиили ваше сообщение и в скором времени свяжемся с вами!"
+                }
+            };
+
+            setTimeout(() => {
+                if (response.status === 200) {
+                    this.resetForm();
+                    this.showAlert(response.data.message);
+                }
+            },400);
+
+        } catch (error) {
+            console.error(error);
+            this.showAlert('Произошла ошибка!');
+        } 
+    }
+
+    resetForm() {
+        [this.#nameInputController, this.#mailInputController, this.#messageInputController]
+        .forEach(inputController => {
+            inputController.clearInput();
+        });
+
+        this.disableSubmitButton();
+    }
+
+    getSumbitButton() {
+        return this.#submitButton;
     }
 }
 
-const contactsFormController = new ContactsFormController;
+class NodeCreator {
+    static createNode(nodeName) {
+        const node = document.createElement(nodeName);
+    
+        const arrayCheck = (data) => Array.isArray(data) && data.length;
+    
+        return (attributes) => {
+            if (arrayCheck(attributes)) {
+                attributes.forEach((item) => {
+                    if (arrayCheck(item)) {
+                    node.setAttribute(item[0], item[1]);
+                    }
+                });
+            }
+    
+            return (content) => {
+                if (content) node.innerHTML = content;
+        
+                return node;
+            };
+        };
+    }
+}
+
+class ContactsFormControllerUI extends ContactsFormController {
+    constructor() {
+        super();
+    }
+
+    init() {
+        super.init();
+    }
+
+    controlSubmitButton() {
+        const isFormValid = this.checkIsFormValid();
+        const submitButton = this.getSumbitButton();
+
+        submitButton.disabled = !isFormValid;
+    }
+
+    disableSubmitButton() {
+        const submitButton = this.getSumbitButton();
+
+        submitButton.disabled = true;
+    }
+
+    showAlert(text) {
+        const alertWrapper = NodeCreator.createNode('div')([['class', 'alert__wrapper']])();
+        const alertText    = NodeCreator.createNode('p')([['class', 'alert__text']])(text);
+
+        alertWrapper.append(alertText);
+        const wrapper = document.body.querySelector('.wrapper');
+        wrapper.append(alertWrapper);
+
+        setTimeout(() => {
+            alertWrapper.remove();
+        }, 7000);
+    }
+}
+
+const contactsFormController = new ContactsFormControllerUI;
 contactsFormController.init();

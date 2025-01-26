@@ -352,4 +352,34 @@ body {
 .contacts__input-toopltip {
     text-align: justify;
     min-height: 36px;
+    color: #E34234;
+}
+
+.contacts__button {
+    background-color: #FFA501;
+    border: none;
+}
+
+.alert__wrapper {
+    position: fixed;
+    bottom: 40px;
+    left: -100%;
+    z-index: 10;
+    background-color: #FFA501;;
+    width: 400px;
+    padding: 10px 40px;
+    text-align: center;
+    font-weight: 600;
+    animation: allertAppearance 1s forwards;
+}
+
+@keyframes allertAppearance {
+    0% {
+        left: -100%; 
+        opacity: 0;  
+    }
+    100% {
+        left: 20px;  
+        opacity: 1; 
+    }
 }
