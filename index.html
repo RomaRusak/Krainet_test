@@ -82,7 +82,7 @@
                     </div>
                     <div class="container introduction__container">
                         <div class="performance-container">
-                            <h1 class="section-main-title">Меня зовут Александра Смит</р>
+                            <h1 class="section-main-title">Меня зовут Александра Смит</h1>
                             <h2 class="perfomance__title">Я web-разработчик из города Москва</h2>
                             <div class="perfomance__buttons-wrapper">
                                 <button class="button">Портфолио</button>
@@ -115,8 +115,27 @@
                             </div>
                             <p class="contacts-text">Или оставьте ваши данные и я сама вам напишу:</p>
                         </div>
-                        <div class="contact__form-wrapper">
-                            1
+                        <div class="contacts__form-wrapper">
+                            <form class="contacts__form">
+                                <div class="contacts__name-wrapper">
+                                    <label class="contacts__label contacts__form-text" for="name">Ваше имя</label>
+                                    <input type="text" class="contacts__name-input contacts__form-text" name="name" id="name">
+                                    <p class="contacts__input-toopltip contacts__form-text"></p>
+                                </div>
+                                <div class="contacts__mail-wrapper">
+                                    <label class="contacts__label contacts__form-text" for="mail">Ваша почта</label>
+                                    <input type="email" class="contacts__mail-input contacts__form-text" name="mail" id="mail">
+                                    <p class="contacts__input-toopltip contacts__form-text"></p>
+                                </div>
+                                <div class="contacts__message-wrapper">
+                                    <label class="contacts__label contacts__form-text" for="message">Ваше сообщение</label>
+                                    <textarea class="contacts__message-input contacts__form-text" name="message"  id="message"></textarea>
+                                    <p class="contacts__input-toopltip contacts__form-text"></p>
+                                </div>
+                                <div class="contacts__button-wrapper">
+                                    <button>Отправить сообщение</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
