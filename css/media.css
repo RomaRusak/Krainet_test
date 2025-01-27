@@ -14,6 +14,10 @@
     .contacts-container > .contacts__img {
         width: 100%;
     }
+
+    .privacy-policy__wrapper {
+        width: 200px;
+    }
 }
 
 @media screen and (max-width: 770px) {
@@ -72,6 +76,19 @@
     .contacts__mail-wrapper,
     .contacts__message-wrapper {
         grid-column: 1/3;
+    }
+
+    .contacts__button-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .alert__wrapper {
+        width: 250px;
+        font-size: 12px;
+        padding: 10px;
     }
 }
 

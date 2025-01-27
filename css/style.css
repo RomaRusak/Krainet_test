@@ -321,6 +321,12 @@ body {
     line-height: 18px;
 }
 
+.contacts__button-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
 .contacts__message-input#message {
     resize: none;
     min-height: 190px;
@@ -365,12 +371,24 @@ body {
     bottom: 40px;
     left: -100%;
     z-index: 10;
-    background-color: #FFA501;;
+    background-color: #44944A;
+    color: #FFFFFF;
     width: 400px;
     padding: 10px 40px;
     text-align: center;
     font-weight: 600;
     animation: allertAppearance 1s forwards;
+}
+
+.privacy-policy__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.privacy-policy__wrapper .privacy-policy__checkbox,
+.privacy-policy__wrapper .privacy-policy__label {
+    cursor: pointer;
 }
 
 @keyframes allertAppearance {

@@ -142,10 +142,12 @@ class ContactsFormController {
     #messageInputController = null;
     #form                   = null;
     #submitButton           = null;
+    #privPolCheckbox        = null;
     
     init() {
-        this.#form         = document.querySelector('.contacts__form');
-        this.#submitButton = document.querySelector('.contacts__button');
+        this.#form            = document.querySelector('.contacts__form');
+        this.#submitButton    = document.querySelector('.contacts__button');
+        this.#privPolCheckbox = document.getElementById('pricacy-policy-checkbox');
 
         this.#nameInputController = new InputControllerUI({
             inputName: 'name', 
@@ -205,6 +207,7 @@ class ContactsFormController {
             this.submitFormHandler();
         }, 700);
 
+        this.#privPolCheckbox.addEventListener('click', this.controlSubmitButton.bind(this))
         this.#submitButton.addEventListener('click', debouncedSubmitHandler.bind(this));
     }
 
@@ -215,9 +218,13 @@ class ContactsFormController {
     }
 
     checkIsFormValid() {
-        return [this.#nameInputController, this.#mailInputController, this.#messageInputController]
+        const areAllInputsValid = [this.#nameInputController, this.#mailInputController, this.#messageInputController]
         .map(inputController =>inputController.getServiceData('isInputValValid'))
         .every(isInputValid => isInputValid);
+
+        const isCheckboxChecked = this.#privPolCheckbox.checked;
+
+        return areAllInputsValid && isCheckboxChecked;
     }
 
     async submitFormHandler() {
@@ -242,7 +249,7 @@ class ContactsFormController {
                 status: 200,
                 message: "OK",
                 data: {
-                    message: "Мы получиили ваше сообщение и в скором времени свяжемся с вами!"
+                    message: "Я получила ваше сообщение и в скором времени свяжусь вами!"
                 }
             };
 
@@ -266,10 +273,15 @@ class ContactsFormController {
         });
 
         this.disableSubmitButton();
+        this.unchekPrivPolCheckbox();
     }
 
     getSumbitButton() {
         return this.#submitButton;
+    }
+
+    getPrivPolCheckbox() {
+        return this.#privPolCheckbox;
     }
 }
 
@@ -317,6 +329,12 @@ class ContactsFormControllerUI extends ContactsFormController {
         const submitButton = this.getSumbitButton();
 
         submitButton.disabled = true;
+    }
+
+    unchekPrivPolCheckbox() {
+        const privPolChekbox = this.getPrivPolCheckbox();
+        
+        privPolChekbox.checked = false;
     }
 
     showAlert(text) {
