@@ -140,7 +140,7 @@ body {
   position: absolute;
   top: calc(50% - 7.5px);
   left: 0;
-  background-image: url('/images/nav_menu_list_icon.svg');
+  background-image: url('../images/nav_menu_list_icon.svg');
   background-size: cover;
   background-position: center;
   height: 15px;
