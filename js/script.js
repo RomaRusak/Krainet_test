@@ -354,3 +354,74 @@ class ContactsFormControllerUI extends ContactsFormController {
 
 const contactsFormController = new ContactsFormControllerUI;
 contactsFormController.init();
+
+class FibonacciNumber {
+    #calculatedNumber = null;
+
+    setCalculateNumber(n = this.#calculatedNumber) {
+        
+        //  Мой вариант решения
+
+        // const fib = n => {
+        //     if (n <= 1) {
+        //         return n;
+        //     }
+        //     return fib(n - 1) + fib(n - 2);
+        // };
+
+        //  Признаюсь, что красивое решение с мемоизацией я нагуглил, 
+        //  опасаясь зависания приложения во время тестов. Вникаю в него и стараюсь разобрать
+
+        const fib = (n, memo = {}) => {
+            if (n <= 1) {
+                return n;
+            }
+            if (memo[n] !== undefined) {
+                return memo[n];
+            }
+            memo[n] = fib(n - 1, memo) + fib(n - 2, memo);
+            return memo[n];
+        };
+
+        this.#calculatedNumber = fib(n);
+        this.render();
+    }
+
+    getCalculatedNumber() {
+        return this.#calculatedNumber
+    }
+}
+
+class FibonacciNumberUI extends FibonacciNumber {
+    #input  = null;
+    #result = null;
+    
+    init() {
+        this.#input = document.getElementById('fibbonaci-input');
+        this.#result = document.querySelector('.fibbonaci__result');
+
+        const debouncedHandler = debounce(() => {
+            const transformedValue = +this.#input.value;
+
+            this.setCalculateNumber(transformedValue);
+        }, 500);
+
+        this.#input.addEventListener('keydown', (e) => {
+            if (e.key === '-') {
+                e.preventDefault();
+            }
+        });
+        this.#input.addEventListener('input', debouncedHandler);
+
+        this.setCalculateNumber(+this.#input.value);
+    }
+
+    render() {
+        const calculatedNumber = this.getCalculatedNumber();
+
+        this.#result.innerText = calculatedNumber;
+    }
+}
+
+const fibonacciNumber = new FibonacciNumberUI;
+fibonacciNumber.init();

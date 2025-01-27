@@ -508,6 +508,31 @@ button:not(:disabled):hover {
   cursor: pointer;
 }
 
+.fibonacci__container {
+    padding: 10px 35px 92px 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    font-weight: 500;
+}
+
+.fibonacci__input_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.fibbonaci__label {
+    text-align: center;
+    display: block;
+}
+
+.fibbonaci__result {
+    font-size: 36px;
+}
+
 @keyframes allertAppearance {
   0% {
     left: -100%;
