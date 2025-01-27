@@ -227,6 +227,23 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.section-subtitle {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 60px;
+    position: relative;
+}
+
+.section-subtitle::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 60px;
+    background-color: #FFA501;
+}
+
 .perfomance__title {
     font-size: 48px;
     line-height: 60px;
@@ -252,8 +269,110 @@ button:not(:disabled):hover {
     background-color: #FFA501;
 }
 
-.contacts-container {
-    padding: 52px 35px 92px 52px; /*Скорректировать паддинг сверху!*/
+.about-me__container {
+    padding: 120px 89px 0 65px;
+}
+
+.about-me__main-title-container,
+.about-me__subtitle-container {
+    display: flex;
+    justify-content: center;
+}
+
+.about-me__subtitle {
+    line-height: 85px;
+    margin-bottom: 60px;
+}
+
+.about-me__subtitle::before {
+    left: calc(50% - 30px);
+}
+
+.about-me__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 136px;
+}
+
+.about-me__column {
+    border-left: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    gap: 60px;
+    position: relative;
+}
+
+.about-me__column-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    position: absolute;
+    top: calc(0% - 7.5px);
+    left: calc(50% - 70px);
+}
+
+.about-me__column > div:nth-child(2) {
+    margin-top: 75px;
+}
+
+.about-me__column::before {
+    content: "";
+    display: block;
+    background-color: #FFA501;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    left: calc(0% - 7.5px);
+    position: absolute;
+}
+
+.about-me__row {
+    padding-left: 43px;
+    border-top: 1px solid black;
+}
+
+.cell {
+    position: relative;
+}
+
+.cell__header {
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+    top: calc(0% - 19px);
+    left: 0;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cell__header__img-wrapper {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.cell__title {
+    font-weight: 700;
+    line-height: 21px;
+}
+
+.cell__text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.cell__text--body {
+    padding-top: 50px;
+}
+
+.contacts__container {
+    padding: 120px 35px 92px 52px;
     display: grid;
     grid-template-columns: 400px 1fr;
     grid-column-gap: 70px;
@@ -269,26 +388,12 @@ button:not(:disabled):hover {
     margin-bottom: 6px;
 }
 
-.section-subtitle {
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 60px;
-    position: relative;
-}
-
 .contacts__subtitle {
     margin-bottom: 20px;
 }
 
 .contacts__subtitle::before {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
     left: 0;
-    height: 3px;
-    width: 60px;
-    background-color: #FFA501;
 }
 
 .contacts-text {

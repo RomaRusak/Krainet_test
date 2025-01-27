@@ -5,13 +5,13 @@
 }
 
 @media screen and (max-width: 1100px) {
-    .contacts-container {
+    .contacts__container {
         grid-template-columns: 1fr 1.5fr;
         grid-template-rows: auto;
         grid-column-gap: 30px;
     }
 
-    .contacts-container > .contacts__img {
+    .contacts__container > .contacts__img {
         width: 100%;
     }
 
@@ -29,11 +29,11 @@
         display: none;
     }
 
-    .contacts-container {
+    .contacts__container {
         grid-template-columns: 1fr;
     }
 
-    .contacts-container > .contacts__img {
+    .contacts__container > .contacts__img {
         display: none;
     }
 }
@@ -54,7 +54,7 @@
         line-height: 39px;
     }
 
-    .contacts-container {
+    .contacts__container {
         padding: 50px 10px;
     }
 
