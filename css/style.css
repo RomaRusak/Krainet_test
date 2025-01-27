@@ -269,32 +269,32 @@ button:not(:disabled):hover {
     background-color: #FFA501;
 }
 
-.about-me__container {
+.experience__container {
     padding: 120px 89px 0 65px;
 }
 
-.about-me__main-title-container,
-.about-me__subtitle-container {
+.experience__main-title-container,
+.experience__subtitle-container {
     display: flex;
     justify-content: center;
 }
 
-.about-me__subtitle {
+.experience__subtitle {
     line-height: 85px;
     margin-bottom: 60px;
 }
 
-.about-me__subtitle::before {
+.experience__subtitle::before {
     left: calc(50% - 30px);
 }
 
-.about-me__content {
+.experience__content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 136px;
 }
 
-.about-me__column {
+.experience__column {
     border-left: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -304,7 +304,7 @@ button:not(:disabled):hover {
     position: relative;
 }
 
-.about-me__column-title {
+.experience__column-title {
     font-weight: 700;
     font-size: 20px;
     line-height: 30px;
@@ -313,11 +313,11 @@ button:not(:disabled):hover {
     left: calc(50% - 70px);
 }
 
-.about-me__column > div:nth-child(2) {
+.experience__column > div:nth-child(2) {
     margin-top: 75px;
 }
 
-.about-me__column::before {
+.experience__column::before {
     content: "";
     display: block;
     background-color: #FFA501;
@@ -328,7 +328,7 @@ button:not(:disabled):hover {
     position: absolute;
 }
 
-.about-me__row {
+.experience__row {
     padding-left: 43px;
     border-top: 1px solid black;
 }
@@ -356,6 +356,12 @@ button:not(:disabled):hover {
     position: relative;
 }
 
+.experience__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
 .cell__title {
     font-weight: 700;
     line-height: 21px;
@@ -369,6 +375,7 @@ button:not(:disabled):hover {
 
 .cell__text--body {
     padding-top: 50px;
+    font-family: "Poppins", serif;
 }
 
 .contacts__container {
