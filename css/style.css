@@ -116,12 +116,17 @@ body {
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
-    color: #FFFFFF;
 }
 
 .nav_menu-list__li {
     position: relative;
     padding-left: 35px;
+    color: #FFFFFF;
+    transition: color .2s ease;
+}
+
+.nav_menu-list__li:hover {
+    color:  #FF4500;
 }
 
 .nav_menu-list__link {
@@ -235,10 +240,15 @@ body {
     cursor: pointer;
     background: transparent;
     transition: background-color .3s ease;
-    border: 2px solid black;
+    border: none;
+    transition: transform 0.2s ease;
 }
 
-.button:hover {
+button:not(:disabled):hover {
+    transform: translateY(2px);
+  }
+
+.orange {
     background-color: #FFA501;
 }
 
@@ -359,11 +369,6 @@ body {
     text-align: justify;
     min-height: 36px;
     color: #E34234;
-}
-
-.contacts__button {
-    background-color: #FFA501;
-    border: none;
 }
 
 .alert__wrapper {
