@@ -285,6 +285,7 @@ class ContactsFormController {
     }
 }
 
+//Быстрое создание DOM-узлов с помощью нативного js
 class NodeCreator {
     static createNode(nodeName) {
         const node = document.createElement(nodeName);
